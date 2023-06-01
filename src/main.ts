@@ -11,6 +11,7 @@ import setupZod from './plugins/zod'
 
 import './assets/styles/tailwind.css'
 import './assets/styles/transitions.scss'
+import './assets/styles/colors.css'
 import { initializeGtm } from './plugins/gtm'
 import { envSchema } from './plugins/env'
 

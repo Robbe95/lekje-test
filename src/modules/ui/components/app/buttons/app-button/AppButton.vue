@@ -15,20 +15,22 @@ const props = withDefaults(defineProps<Props>(), {
   variant: 'primary',
 })
 
-const emits = defineEmits(['component:click'])
+const emits = defineEmits<{
+  'component:click': [event: Event]
+}>()
 
 const { isDisabled, isLoading } = toRefs(props)
 
-const handleClick = (): void => {
+const handleClick = (e: Event): void => {
   if (!isDisabled.value && !isLoading.value)
-    emits('component:click')
+    emits('component:click', e)
 }
 </script>
 
 <template>
   <!-- eslint-disable tailwindcss/no-custom-classname -->
   <button
-    class="relative overflow-hidden whitespace-nowrap rounded border px-3 py-2 transition duration-200 hover:shadow-main md:px-8"
+    class="relative overflow-hidden whitespace-nowrap rounded-button border px-3 py-2 transition duration-200 hover:shadow-main md:px-8"
     :class="{
       'cursor-not-allowed bg-opacity-70': isDisabled || isLoading,
       'border border-transparent bg-primary-500 text-white': variant === 'primary',
